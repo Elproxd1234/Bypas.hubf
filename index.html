@@ -89,7 +89,7 @@
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(200, 170, 0, 0.1));
             border: 2px solid #ffd700;
             padding: 15px;
-            border-radius = 10px;
+            border-radius: 10px;
             margin: 15px 0;
             font-family: 'Courier New', monospace;
             font-size: 1.2em;
@@ -309,7 +309,7 @@
             <div class="instructions">
                 <p><strong>Para integrar con BYPAS.HUB v6.3:</strong></p>
                 <!-- ✅ URL CORRECTA: -->
-                <p>URL de verificación: <code>https://elproxd1234.github.io/gfwergwgwg/?key=TU_KEY&hub=1</code></p>
+                <p>URL de verificación: <code>https://elproxd1234.github.io/Bypas.hubf/?key=TU_KEY&hub=1</code></p>
                 <p>Devuelve JSON con la estructura:</p>
                 <pre>{
   "valid": true/false,
@@ -534,7 +534,7 @@
             let durationText;
             if (keyData.tier === 'lifetime') {
                 durationText = 'Vitalicia (∞)';
-            else {
+            } else {
                 const hours = config.duration / 3600;
                 if (hours < 24) {
                     durationText = `${hours} horas`;
@@ -553,7 +553,7 @@
             
             // ✅ URL CORRECTA:
             document.getElementById('detailUsage').textContent = 
-                `https://elproxd1234.github.io/gfwergwgwg/?key=${keyData.key}&hub=1`;
+                `https://elproxd1234.github.io/Bypas.hubf/?key=${keyData.key}&hub=1`;
             
             // Mostrar detalles
             detailsDiv.style.display = 'block';
@@ -762,31 +762,36 @@
         // INICIALIZACIÓN
         // ============================================
         window.onload = function() {
-            initializeStorage();
-            
+            // ✅ PRIMERO: Verificar si es una solicitud API
             const params = getUrlParams();
             
-            // ✅ ESTA ES LA PARTE MÁS IMPORTANTE:
-            // Si es una solicitud de API (hub=1), devolver SOLO JSON
             if (params.hub === '1') {
+                // SOLO para API - devolver JSON puro
                 const result = verifyKey(params.key);
                 
-                // Ocultar todo y mostrar solo JSON
+                // Limpiar TODO y mostrar solo JSON
                 document.body.innerHTML = '';
+                document.head.innerHTML = '';
                 
-                // Establecer headers para JSON
+                // Crear meta tag para JSON
                 const meta = document.createElement('meta');
-                meta.httpEquiv = 'Content-Type';
-                meta.content = 'application/json';
+                meta.charset = 'UTF-8';
                 document.head.appendChild(meta);
                 
-                // Mostrar JSON
+                // Escribir JSON
                 document.open();
-                document.write(JSON.stringify(result));
+                document.write(JSON.stringify(result, null, 2));
                 document.close();
                 
-            } else if (params.key) {
-                // Modo navegador con key en URL - verificar automáticamente
+                // IMPORTANTE: Salir de la función
+                return;
+            }
+            
+            // ✅ SEGUNDO: Si NO es API, cargar la página normal
+            initializeStorage();
+            
+            if (params.key) {
+                // Modo navegador con key en URL
                 document.getElementById('keyToVerify').value = params.key;
                 verifyUserKey();
             }
