@@ -464,540 +464,584 @@
     <!-- Partículas -->
     <div id="particles-js"></div>
     
-    <!-- Contenedor principal -->
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <h1>🔐 BYPAS.HUB KEY GENERATOR</h1>
-            <p class="subtitle">Generador de Keys Infinitas para BYPAS.HUB v6.3</p>
-            <div class="badges">
-                <div class="badge infinite">
-                    <span>♾️</span> KEYS INFINITAS
-                </div>
-                <div class="badge">
-                    <span>🔗</span> CONECTADO AL HUB
-                </div>
-                <div class="badge">
-                    <span>🎮</span> ROBLOX COMPATIBLE
-                </div>
-                <div class="badge">
-                    <span>⚡</span> GENERACIÓN INSTANTÁNEA
-                </div>
-            </div>
-        </header>
-        
-        <!-- Panel de key generada -->
-        <div class="key-panel">
-            <h2 style="color: var(--warning); margin-bottom: 20px; font-size: 1.8em;">
-                ✅ KEY GENERADA AUTOMÁTICAMENTE
-            </h2>
-            
-            <div id="generatedKey" class="key-display" onclick="copyKey()">
-                <div id="keyText" style="color: var(--warning);">Generando key...</div>
-                <div style="font-size: 0.6em; color: #aaa; margin-top: 10px;">
-                    Haz clic para copiar la key
-                </div>
-            </div>
-            
-            <div class="button-group">
-                <button class="btn btn-generate" onclick="generateNewKey()">
-                    <span>⚡</span> GENERAR NUEVA KEY
-                </button>
-                <button class="btn btn-success" onclick="copyKey()">
-                    <span>📋</span> COPIAR KEY
-                </button>
-                <button class="btn" onclick="testHubConnection()">
-                    <span>🔗</span> PROBAR CONEXIÓN HUB
-                </button>
-            </div>
-        </div>
-        
-        <!-- Información de la key -->
-        <div id="keyInfo" class="info-box" style="display: none;">
-            <h3 style="color: var(--success); margin-bottom: 15px;">📋 INFORMACIÓN DE LA KEY</h3>
-            <div class="info-grid">
-                <div class="info-item">
-                    <div class="info-label">KEY:</div>
-                    <div class="info-value" id="infoKey"></div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">ESTADO:</div>
-                    <div class="info-value" style="color: var(--success);" id="infoStatus">✅ VÁLIDA PARA HUB</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">DURACIÓN:</div>
-                    <div class="info-value" id="infoDuration">30 DÍAS</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">EXPIRA:</div>
-                    <div class="info-value" id="infoExpires"></div>
-                </div>
-            </div>
-            
-            <div style="margin-top: 25px;">
-                <div class="info-label">🔗 URL DE VERIFICACIÓN PARA BYPAS.HUB:</div>
-                <div class="url-box" id="infoUrl"></div>
-            </div>
-            
-            <div class="button-group" style="margin-top: 20px;">
-                <button class="btn btn-success" onclick="copyKey()">
-                    <span>📋</span> COPIAR KEY
-                </button>
-                <button class="btn" onclick="copyVerificationUrl()">
-                    <span>🔗</span> COPIAR URL DEL HUB
-                </button>
-            </div>
-        </div>
-        
-        <!-- Instrucciones -->
-        <div class="info-box" style="background: rgba(255, 215, 0, 0.1); border-color: var(--warning);">
-            <h3 style="color: var(--warning); margin-bottom: 15px;">🎮 CÓMO USAR EN BYPAS.HUB v6.3</h3>
-            <div style="line-height: 1.6; color: #e0e0ff;">
-                <p>1. <strong>Copia la key</strong> de arriba (haz clic en ella o usa el botón "COPIAR KEY")</p>
-                <p>2. <strong>En Roblox, abre BYPAS.HUB v6.3</strong> y espera la pantalla de activación</p>
-                <p>3. <strong>Pega la key</strong> en el campo de texto y haz clic en CHECK</p>
-                <p>4. <strong>El hub verificará automáticamente</strong> con esta página web</p>
-                <p>5. <strong>¡Listo!</strong> Tendrás acceso completo a todas las funciones premium</p>
-            </div>
-        </div>
-        
-        <!-- Generador adicional -->
-        <div style="text-align: center; margin-top: 40px; padding: 25px; background: rgba(0,0,0,0.2); border-radius: 15px;">
-            <h3 style="color: var(--cyan); margin-bottom: 20px;">⚙️ GENERAR KEY PERSONALIZADA</h3>
-            
-            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin: 20px 0;">
-                <button class="btn" onclick="generateKeyWithDuration(1)" style="min-width: 120px;">
-                    1 HORA
-                </button>
-                <button class="btn" onclick="generateKeyWithDuration(24)" style="min-width: 120px;">
-                    24 HORAS
-                </button>
-                <button class="btn" onclick="generateKeyWithDuration(168)" style="min-width: 120px;">
-                    7 DÍAS
-                </button>
-                <button class="btn" onclick="generateKeyWithDuration(720)" style="min-width: 120px;">
-                    30 DÍAS
-                </button>
-                <button class="btn" onclick="generateKeyWithDuration(999999)" style="min-width: 120px; background: linear-gradient(135deg, var(--pink), var(--cyan));">
-                    ♾️ INFINITA
-                </button>
-            </div>
-        </div>
-    </div>
+    <!-- ============================================
+    MANEJADOR ESPECIAL PARA EL HUB
+    ============================================ -->
     
-    <footer>
-        <p>🔐 BYPAS.HUB Key Generator v3.0 - Sistema de Keys Infinitas</p>
-        <p style="margin-top: 10px; font-size: 0.9em;">
-            Conectado directamente a BYPAS.HUB v6.3 en Roblox
-        </p>
-    </footer>
-
     <script>
-        // ============================================
-        // CONFIGURACIÓN INICIAL
-        // ============================================
+    // ============================================
+    // MANEJADOR PRINCIPAL PARA EL HUB
+    // ============================================
+    
+    function handleHubRequest() {
+        console.log('🔍 Verificando si es una solicitud del hub...');
         
-        // Configurar partículas
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 120, density: { enable: true, value_area: 1000 } },
-                color: { value: "#00a8ff" },
-                shape: { type: "circle" },
-                opacity: { value: 0.3, random: true },
-                size: { value: 2, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 120,
-                    color: "#00ff64",
-                    opacity: 0.2,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 1.5,
-                    direction: "none",
-                    random: true,
-                    straight: false,
-                    out_mode: "out",
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: { enable: true, mode: "repulse" },
-                    onclick: { enable: true, mode: "push" }
-                }
-            }
-        });
+        const params = new URLSearchParams(window.location.search);
+        const key = params.get('key');
+        const hub = params.get('hub');
         
-        // ============================================
-        // SISTEMA DE GENERACIÓN DE KEYS
-        // ============================================
-        
-        const KEYS_STORAGE = 'bypas_hub_keys_v4';
-        let currentKey = null;
-        
-        // Función para generar una nueva key automáticamente
-        function generateNewKey() {
-            // Generar key aleatoria
-            const prefix = 'BYPAS';
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-            
-            let key = prefix + '-';
-            for (let i = 0; i < 3; i++) {
-                for (let j = 0; j < 4; j++) {
-                    key += chars.charAt(Math.floor(Math.random() * chars.length));
-                }
-                if (i < 2) key += '-';
-            }
-            
-            // Configurar duración (30 días por defecto)
-            const now = Math.floor(Date.now() / 1000);
-            const durationHours = 720; // 30 días
-            const expiresAt = now + (durationHours * 3600);
-            
-            // Crear objeto key
-            currentKey = {
-                key: key,
-                created: now,
-                expiresAt: expiresAt,
-                duration: durationHours,
-                infinite: durationHours >= 999999,
-                status: 'VALID'
-            };
-            
-            // Guardar en localStorage
-            saveKey(currentKey);
-            
-            // Mostrar key
-            displayKey(currentKey);
-            
-            // Mostrar notificación
-            showNotification('✅ KEY GENERADA', '¡Key lista para usar en BYPAS.HUB v6.3!');
-            
-            // Reproducir sonido de éxito
-            playSuccessSound();
-            
-            return currentKey;
-        }
-        
-        // Guardar key en localStorage
-        function saveKey(keyData) {
-            let keys = JSON.parse(localStorage.getItem(KEYS_STORAGE)) || [];
-            keys.push(keyData);
-            
-            // Mantener solo las últimas 100 keys
-            if (keys.length > 100) {
-                keys = keys.slice(-100);
-            }
-            
-            localStorage.setItem(KEYS_STORAGE, JSON.stringify(keys));
-        }
-        
-        // Mostrar key en la interfaz
-        function displayKey(keyData) {
-            const keyText = document.getElementById('keyText');
-            const infoBox = document.getElementById('keyInfo');
-            
-            // Mostrar key
-            keyText.textContent = keyData.key;
-            keyText.style.color = keyData.infinite ? '#ff00ff' : '#ffd700';
-            
-            // Mostrar información
-            document.getElementById('infoKey').textContent = keyData.key;
-            document.getElementById('infoDuration').textContent = 
-                keyData.infinite ? '♾️ INFINITA' : `${keyData.duration / 24} DÍAS`;
-            
-            // Calcular fecha de expiración
-            const expireDate = new Date(keyData.expiresAt * 1000);
-            document.getElementById('infoExpires').textContent = keyData.infinite ? 
-                'NUNCA (VITALICIA)' : 
-                expireDate.toLocaleDateString('es-ES', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
-            
-            // Mostrar URL de verificación
-            const verificationUrl = `https://elproxd1234.github.io/Bypas.hubf/?key=${encodeURIComponent(keyData.key)}&hub=1`;
-            document.getElementById('infoUrl').textContent = verificationUrl;
-            
-            // Mostrar caja de información
-            infoBox.style.display = 'block';
-            infoBox.style.animation = 'fadeIn 0.5s ease-out';
-            
-            // Efecto visual en la key
-            const keyDisplay = document.getElementById('generatedKey');
-            keyDisplay.style.animation = 'pulse 0.5s';
-            setTimeout(() => {
-                keyDisplay.style.animation = '';
-            }, 500);
-        }
-        
-        // ============================================
-        // FUNCIONES DE UTILIDAD
-        // ============================================
-        
-        // Copiar key al portapapeles
-        function copyKey() {
-            if (!currentKey) return;
-            
-            navigator.clipboard.writeText(currentKey.key).then(() => {
-                // Efecto visual de copiado
-                const keyDisplay = document.getElementById('generatedKey');
-                const effect = document.createElement('div');
-                effect.className = 'copied-effect';
-                keyDisplay.appendChild(effect);
-                
-                setTimeout(() => {
-                    if (effect.parentNode) {
-                        effect.parentNode.removeChild(effect);
-                    }
-                }, 600);
-                
-                // Notificación
-                showNotification('📋 KEY COPIADA', 'Pega la key en BYPAS.HUB v6.3');
-                
-                // Sonido
-                playCopySound();
-                
-            }).catch(err => {
-                showNotification('❌ Error', 'No se pudo copiar la key', 'error');
-            });
-        }
-        
-        // Copiar URL de verificación
-        function copyVerificationUrl() {
-            if (!currentKey) return;
-            
-            const url = `https://elproxd1234.github.io/Bypas.hubf/?key=${encodeURIComponent(currentKey.key)}&hub=1`;
-            navigator.clipboard.writeText(url).then(() => {
-                showNotification('🔗 URL COPIADA', 'URL de verificación copiada');
-                playCopySound();
-            });
-        }
-        
-        // Generar key con duración específica
-        function generateKeyWithDuration(hours) {
-            const prefix = 'BYPAS';
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-            
-            let key = prefix + '-';
-            for (let i = 0; i < 3; i++) {
-                for (let j = 0; j < 4; j++) {
-                    key += chars.charAt(Math.floor(Math.random() * chars.length));
-                }
-                if (i < 2) key += '-';
-            }
+        // Si es una solicitud del hub (hub=1)
+        if (hub === '1' && key) {
+            console.log('🎮 BYPAS.HUB está verificando la key:', key);
             
             const now = Math.floor(Date.now() / 1000);
-            const expiresAt = now + (hours * 3600);
             
-            currentKey = {
-                key: key,
-                created: now,
-                expiresAt: expiresAt,
-                duration: hours,
-                infinite: hours >= 999999,
-                status: 'VALID'
-            };
+            // Buscar key en localStorage
+            const keys = JSON.parse(localStorage.getItem('bypas_hub_keys_v4')) || [];
+            const foundKey = keys.find(k => k.key === key.toUpperCase());
             
-            saveKey(currentKey);
-            displayKey(currentKey);
+            let response;
             
-            const durationText = hours >= 999999 ? 'INFINITA' : `${hours / 24} DÍAS`;
-            showNotification(`✅ KEY ${durationText} GENERADA`, '¡Lista para usar!');
-            playSuccessSound();
-        }
-        
-        // Probar conexión con el hub
-        function testHubConnection() {
-            if (!currentKey) return;
-            
-            showNotification('🔗 PROBANDO CONEXIÓN...', 'Simulando verificación del hub', 'info');
-            
-            // Simular delay
-            setTimeout(() => {
-                const success = Math.random() > 0.1; // 90% de éxito
+            if (foundKey) {
+                console.log('✅ Key encontrada en la base de datos:', foundKey);
                 
-                if (success) {
-                    showNotification('🎮 CONEXIÓN EXITOSA', 'La key es VÁLIDA para BYPAS.HUB v6.3', 'success');
-                    playSuccessSound();
-                } else {
-                    showNotification('⚠️ CONEXIÓN FALLIDA', 'Simulación de error de conexión', 'warning');
-                }
-            }, 1500);
-        }
-        
-        // ============================================
-        // EFECTOS Y SONIDOS
-        // ============================================
-        
-        function playSuccessSound() {
-            // Crear contexto de audio
-            try {
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                
-                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-                oscillator.frequency.exponentialRampToValueAtTime(1200, audioContext.currentTime + 0.1);
-                
-                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
-                
-                oscillator.start();
-                oscillator.stop(audioContext.currentTime + 0.2);
-            } catch (e) {
-                console.log('Audio no disponible');
-            }
-        }
-        
-        function playCopySound() {
-            try {
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                
-                oscillator.frequency.setValueAtTime(600, audioContext.currentTime);
-                oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
-                
-                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
-                
-                oscillator.start();
-                oscillator.stop(audioContext.currentTime + 0.15);
-            } catch (e) {
-                console.log('Audio no disponible');
-            }
-        }
-        
-        function showNotification(title, message, type = 'success') {
-            // Eliminar notificación anterior si existe
-            const oldNotification = document.querySelector('.notification');
-            if (oldNotification) {
-                oldNotification.remove();
-            }
-            
-            // Crear nueva notificación
-            const notification = document.createElement('div');
-            notification.className = 'notification';
-            
-            // Color según tipo
-            if (type === 'error') {
-                notification.style.background = 'rgba(255, 50, 50, 0.9)';
-            } else if (type === 'warning') {
-                notification.style.background = 'rgba(255, 215, 0, 0.9)';
-            } else if (type === 'info') {
-                notification.style.background = 'rgba(0, 168, 255, 0.9)';
-            }
-            
-            notification.innerHTML = `
-                <div style="font-size: 1.1em; margin-bottom: 5px;">${title}</div>
-                <div style="font-size: 0.9em; opacity: 0.9;">${message}</div>
-            `;
-            
-            document.body.appendChild(notification);
-            
-            // Eliminar después de 3 segundos
-            setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.parentNode.removeChild(notification);
-                }
-            }, 3000);
-        }
-        
-        // ============================================
-        // MANEJADOR API PARA EL HUB
-        // ============================================
-        function handleApiRequest() {
-            const params = new URLSearchParams(window.location.search);
-            const key = params.get('key');
-            const hub = params.get('hub');
-            
-            // Si es una solicitud del hub (hub=1)
-            if (hub === '1' && key) {
-                const now = Math.floor(Date.now() / 1000);
-                
-                // Buscar key en localStorage
-                const keys = JSON.parse(localStorage.getItem(KEYS_STORAGE)) || [];
-                const foundKey = keys.find(k => k.key === key.toUpperCase());
-                
-                let response;
-                
-                if (foundKey) {
-                    // Verificar si ha expirado
-                    if (!foundKey.infinite && now > foundKey.expiresAt) {
-                        response = {
-                            valid: false,
-                            success: false,
-                            message: "Key expirada",
-                            serverTime: now
-                        };
-                    } else {
-                        // ¡KEY VÁLIDA!
-                        response = {
-                            valid: true,
-                            success: true,
-                            key: foundKey.key,
-                            expiresAt: foundKey.expiresAt,
-                            infinite: foundKey.infinite,
-                            message: "✅ Key Premium válida - BYPAS.HUB v6.3",
-                            serverTime: now,
-                            signature: "BYPHUB_VALID_" + Date.now(),
-                            features: ["ESP", "FLY", "AIMBOT", "VISUALS", "PREMIUM", "EXCLUSIVE"],
-                            version: "6.3.0"
-                        };
-                    }
-                } else {
-                    // Key no encontrada
+                // Verificar si ha expirado
+                if (!foundKey.infinite && now > foundKey.expiresAt) {
+                    console.log('⚠️ Key expirada');
                     response = {
                         valid: false,
                         success: false,
-                        message: "Key no encontrada",
+                        message: "Key expirada",
                         serverTime: now
                     };
+                } else {
+                    // ¡KEY VÁLIDA!
+                    console.log('🎯 Key válida, enviando respuesta al hub');
+                    response = {
+                        valid: true,
+                        success: true,
+                        key: foundKey.key,
+                        expiresAt: foundKey.expiresAt,
+                        infinite: foundKey.infinite,
+                        message: "✅ Key Premium válida - BYPAS.HUB v6.3",
+                        serverTime: now,
+                        features: ["ESP", "FLY", "AIMBOT", "VISUALS", "PREMIUM", "EXCLUSIVE"],
+                        version: "6.3.0"
+                    };
                 }
-                
-                // Devolver JSON para el hub
-                document.body.innerHTML = '';
-                document.head.innerHTML = '';
-                
-                const meta = document.createElement('meta');
-                meta.charset = 'UTF-8';
-                document.head.appendChild(meta);
-                
-                document.open();
-                document.write(JSON.stringify(response, null, 2));
-                document.close();
-                
-                return true;
+            } else {
+                // Key no encontrada
+                console.log('❌ Key NO encontrada en la base de datos');
+                response = {
+                    valid: false,
+                    success: false,
+                    message: "Key no encontrada en nuestra base de datos",
+                    serverTime: now
+                };
             }
             
-            return false;
+            // Devolver SOLO JSON para el hub
+            console.log('📤 Enviando respuesta JSON al hub:', response);
+            
+            // Limpiar todo el documento
+            document.documentElement.innerHTML = '';
+            
+            // Crear nueva estructura mínima
+            document.open();
+            document.write(`<!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="Content-Type" content="application/json; charset=UTF-8">
+                <title>BYPAS.HUB Key Verification</title>
+            </head>
+            <body>
+                <pre>${JSON.stringify(response, null, 2)}</pre>
+                <!-- Debug info -->
+                <script>
+                    console.log('📊 BYPAS.HUB Response:', ${JSON.stringify(response)});
+                <\/script>
+            </body>
+            </html>`);
+            document.close();
+            
+            return true;
         }
         
+        console.log('🌐 No es una solicitud del hub, cargando interfaz normal...');
+        return false;
+    }
+    </script>
+    
+    <!-- Contenedor principal (solo visible si NO es una solicitud del hub) -->
+    <div id="mainInterface" style="display: none;">
+        <div class="container">
+            <!-- Header -->
+            <header>
+                <h1>🔐 BYPAS.HUB KEY GENERATOR</h1>
+                <p class="subtitle">Generador de Keys Infinitas para BYPAS.HUB v6.3</p>
+                <div class="badges">
+                    <div class="badge infinite">
+                        <span>♾️</span> KEYS INFINITAS
+                    </div>
+                    <div class="badge">
+                        <span>🔗</span> CONECTADO AL HUB
+                    </div>
+                    <div class="badge">
+                        <span>🎮</span> ROBLOX COMPATIBLE
+                    </div>
+                    <div class="badge">
+                        <span>⚡</span> GENERACIÓN INSTANTÁNEA
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Panel de key generada -->
+            <div class="key-panel">
+                <h2 style="color: var(--warning); margin-bottom: 20px; font-size: 1.8em;">
+                    ✅ KEY GENERADA AUTOMÁTICAMENTE
+                </h2>
+                
+                <div id="generatedKey" class="key-display" onclick="copyKey()">
+                    <div id="keyText" style="color: var(--warning);">Generando key...</div>
+                    <div style="font-size: 0.6em; color: #aaa; margin-top: 10px;">
+                        Haz clic para copiar la key
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn btn-generate" onclick="generateNewKey()">
+                        <span>⚡</span> GENERAR NUEVA KEY
+                    </button>
+                    <button class="btn btn-success" onclick="copyKey()">
+                        <span>📋</span> COPIAR KEY
+                    </button>
+                    <button class="btn" onclick="testHubConnection()">
+                        <span>🔗</span> PROBAR CONEXIÓN HUB
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Información de la key -->
+            <div id="keyInfo" class="info-box" style="display: none;">
+                <h3 style="color: var(--success); margin-bottom: 15px;">📋 INFORMACIÓN DE LA KEY</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">KEY:</div>
+                        <div class="info-value" id="infoKey"></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">ESTADO:</div>
+                        <div class="info-value" style="color: var(--success);" id="infoStatus">✅ VÁLIDA PARA HUB</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">DURACIÓN:</div>
+                        <div class="info-value" id="infoDuration">30 DÍAS</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">EXPIRA:</div>
+                        <div class="info-value" id="infoExpires"></div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 25px;">
+                    <div class="info-label">🔗 URL DE VERIFICACIÓN PARA BYPAS.HUB:</div>
+                    <div class="url-box" id="infoUrl"></div>
+                </div>
+                
+                <div class="button-group" style="margin-top: 20px;">
+                    <button class="btn btn-success" onclick="copyKey()">
+                        <span>📋</span> COPIAR KEY
+                    </button>
+                    <button class="btn" onclick="copyVerificationUrl()">
+                        <span>🔗</span> COPIAR URL DEL HUB
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Instrucciones -->
+            <div class="info-box" style="background: rgba(255, 215, 0, 0.1); border-color: var(--warning);">
+                <h3 style="color: var(--warning); margin-bottom: 15px;">🎮 CÓMO USAR EN BYPAS.HUB v6.3</h3>
+                <div style="line-height: 1.6; color: #e0e0ff;">
+                    <p>1. <strong>Copia la key</strong> de arriba (haz clic en ella o usa el botón "COPIAR KEY")</p>
+                    <p>2. <strong>En Roblox, abre BYPAS.HUB v6.3</strong> y espera la pantalla de activación</p>
+                    <p>3. <strong>Pega la key</strong> en el campo de texto y haz clic en CHECK</p>
+                    <p>4. <strong>El hub verificará automáticamente</strong> con esta página web</p>
+                    <p>5. <strong>¡Listo!</strong> Tendrás acceso completo a todas las funciones premium</p>
+                </div>
+            </div>
+            
+            <!-- Generador adicional -->
+            <div style="text-align: center; margin-top: 40px; padding: 25px; background: rgba(0,0,0,0.2); border-radius: 15px;">
+                <h3 style="color: var(--cyan); margin-bottom: 20px;">⚙️ GENERAR KEY PERSONALIZADA</h3>
+                
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin: 20px 0;">
+                    <button class="btn" onclick="generateKeyWithDuration(1)" style="min-width: 120px;">
+                        1 HORA
+                    </button>
+                    <button class="btn" onclick="generateKeyWithDuration(24)" style="min-width: 120px;">
+                        24 HORAS
+                    </button>
+                    <button class="btn" onclick="generateKeyWithDuration(168)" style="min-width: 120px;">
+                        7 DÍAS
+                    </button>
+                    <button class="btn" onclick="generateKeyWithDuration(720)" style="min-width: 120px;">
+                        30 DÍAS
+                    </button>
+                    <button class="btn" onclick="generateKeyWithDuration(999999)" style="min-width: 120px; background: linear-gradient(135deg, var(--pink), var(--cyan));">
+                        ♾️ INFINITA
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>🔐 BYPAS.HUB Key Generator v3.0 - Sistema de Keys Infinitas</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">
+                Conectado directamente a BYPAS.HUB v6.3 en Roblox
+            </p>
+        </footer>
+    </div>
+
+    <script>
         // ============================================
-        // INICIALIZACIÓN
+        // INICIALIZACIÓN PRINCIPAL
         // ============================================
+        
+        // Llamar al cargar la página
         window.onload = function() {
-            // Primero, verificar si es una solicitud API del hub
-            if (handleApiRequest()) {
-                return;
+            console.log('🚀 BYPAS.HUB Key Generator iniciando...');
+            
+            // PRIMERO: Verificar si es una solicitud del hub
+            if (handleHubRequest()) {
+                console.log('✅ Solicitud del hub procesada');
+                return; // No cargar la interfaz normal
             }
+            
+            // SI NO ES UNA SOLICITUD DEL HUB, cargar interfaz normal
+            console.log('🌐 Cargando interfaz normal del generador...');
+            
+            // Mostrar la interfaz principal
+            document.getElementById('mainInterface').style.display = 'block';
+            
+            // Configurar partículas
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 120, density: { enable: true, value_area: 1000 } },
+                    color: { value: "#00a8ff" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.3, random: true },
+                    size: { value: 2, random: true },
+                    line_linked: {
+                        enable: true,
+                        distance: 120,
+                        color: "#00ff64",
+                        opacity: 0.2,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 1.5,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        out_mode: "out",
+                        bounce: false
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true, mode: "repulse" },
+                        onclick: { enable: true, mode: "push" }
+                    }
+                }
+            });
+            
+            // ============================================
+            // SISTEMA DE GENERACIÓN DE KEYS
+            // ============================================
+            
+            const KEYS_STORAGE = 'bypas_hub_keys_v4';
+            let currentKey = null;
+            
+            // Función para generar una nueva key automáticamente
+            function generateNewKey() {
+                // Generar key aleatoria
+                const prefix = 'BYPAS';
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+                
+                let key = prefix + '-';
+                for (let i = 0; i < 3; i++) {
+                    for (let j = 0; j < 4; j++) {
+                        key += chars.charAt(Math.floor(Math.random() * chars.length));
+                    }
+                    if (i < 2) key += '-';
+                }
+                
+                // Configurar duración (30 días por defecto)
+                const now = Math.floor(Date.now() / 1000);
+                const durationHours = 720; // 30 días
+                const expiresAt = now + (durationHours * 3600);
+                
+                // Crear objeto key
+                currentKey = {
+                    key: key,
+                    created: now,
+                    expiresAt: expiresAt,
+                    duration: durationHours,
+                    infinite: durationHours >= 999999,
+                    status: 'VALID'
+                };
+                
+                // Guardar en localStorage
+                saveKey(currentKey);
+                
+                // Mostrar key
+                displayKey(currentKey);
+                
+                // Mostrar notificación
+                showNotification('✅ KEY GENERADA', '¡Key lista para usar en BYPAS.HUB v6.3!');
+                
+                // Reproducir sonido de éxito
+                playSuccessSound();
+                
+                return currentKey;
+            }
+            
+            // Guardar key en localStorage
+            function saveKey(keyData) {
+                let keys = JSON.parse(localStorage.getItem(KEYS_STORAGE)) || [];
+                keys.push(keyData);
+                
+                // Mantener solo las últimas 100 keys
+                if (keys.length > 100) {
+                    keys = keys.slice(-100);
+                }
+                
+                localStorage.setItem(KEYS_STORAGE, JSON.stringify(keys));
+                console.log('💾 Key guardada:', keyData.key);
+            }
+            
+            // Mostrar key en la interfaz
+            function displayKey(keyData) {
+                const keyText = document.getElementById('keyText');
+                const infoBox = document.getElementById('keyInfo');
+                
+                // Mostrar key
+                keyText.textContent = keyData.key;
+                keyText.style.color = keyData.infinite ? '#ff00ff' : '#ffd700';
+                
+                // Mostrar información
+                document.getElementById('infoKey').textContent = keyData.key;
+                document.getElementById('infoDuration').textContent = 
+                    keyData.infinite ? '♾️ INFINITA' : `${keyData.duration / 24} DÍAS`;
+                
+                // Calcular fecha de expiración
+                const expireDate = new Date(keyData.expiresAt * 1000);
+                document.getElementById('infoExpires').textContent = keyData.infinite ? 
+                    'NUNCA (VITALICIA)' : 
+                    expireDate.toLocaleDateString('es-ES', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                
+                // Mostrar URL de verificación
+                const verificationUrl = `https://elproxd1234.github.io/Bypas.hubf/?key=${encodeURIComponent(keyData.key)}&hub=1`;
+                document.getElementById('infoUrl').textContent = verificationUrl;
+                
+                // Mostrar caja de información
+                infoBox.style.display = 'block';
+                infoBox.style.animation = 'fadeIn 0.5s ease-out';
+                
+                // Efecto visual en la key
+                const keyDisplay = document.getElementById('generatedKey');
+                keyDisplay.style.animation = 'pulse 0.5s';
+                setTimeout(() => {
+                    keyDisplay.style.animation = '';
+                }, 500);
+            }
+            
+            // ============================================
+            // FUNCIONES DE UTILIDAD
+            // ============================================
+            
+            // Copiar key al portapapeles
+            function copyKey() {
+                if (!currentKey) return;
+                
+                navigator.clipboard.writeText(currentKey.key).then(() => {
+                    // Efecto visual de copiado
+                    const keyDisplay = document.getElementById('generatedKey');
+                    const effect = document.createElement('div');
+                    effect.className = 'copied-effect';
+                    keyDisplay.appendChild(effect);
+                    
+                    setTimeout(() => {
+                        if (effect.parentNode) {
+                            effect.parentNode.removeChild(effect);
+                        }
+                    }, 600);
+                    
+                    // Notificación
+                    showNotification('📋 KEY COPIADA', 'Pega la key en BYPAS.HUB v6.3');
+                    
+                    // Sonido
+                    playCopySound();
+                    
+                }).catch(err => {
+                    showNotification('❌ Error', 'No se pudo copiar la key', 'error');
+                });
+            }
+            
+            // Copiar URL de verificación
+            function copyVerificationUrl() {
+                if (!currentKey) return;
+                
+                const url = `https://elproxd1234.github.io/Bypas.hubf/?key=${encodeURIComponent(currentKey.key)}&hub=1`;
+                navigator.clipboard.writeText(url).then(() => {
+                    showNotification('🔗 URL COPIADA', 'URL de verificación copiada');
+                    playCopySound();
+                });
+            }
+            
+            // Generar key con duración específica
+            function generateKeyWithDuration(hours) {
+                const prefix = 'BYPAS';
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+                
+                let key = prefix + '-';
+                for (let i = 0; i < 3; i++) {
+                    for (let j = 0; j < 4; j++) {
+                        key += chars.charAt(Math.floor(Math.random() * chars.length));
+                    }
+                    if (i < 2) key += '-';
+                }
+                
+                const now = Math.floor(Date.now() / 1000);
+                const expiresAt = now + (hours * 3600);
+                
+                currentKey = {
+                    key: key,
+                    created: now,
+                    expiresAt: expiresAt,
+                    duration: hours,
+                    infinite: hours >= 999999,
+                    status: 'VALID'
+                };
+                
+                saveKey(currentKey);
+                displayKey(currentKey);
+                
+                const durationText = hours >= 999999 ? 'INFINITA' : `${hours / 24} DÍAS`;
+                showNotification(`✅ KEY ${durationText} GENERADA`, '¡Lista para usar!');
+                playSuccessSound();
+            }
+            
+            // Probar conexión con el hub
+            function testHubConnection() {
+                if (!currentKey) return;
+                
+                showNotification('🔗 PROBANDO CONEXIÓN...', 'Simulando verificación del hub', 'info');
+                
+                // Simular delay
+                setTimeout(() => {
+                    const success = Math.random() > 0.1; // 90% de éxito
+                    
+                    if (success) {
+                        showNotification('🎮 CONEXIÓN EXITOSA', 'La key es VÁLIDA para BYPAS.HUB v6.3', 'success');
+                        playSuccessSound();
+                    } else {
+                        showNotification('⚠️ CONEXIÓN FALLIDA', 'Simulación de error de conexión', 'warning');
+                    }
+                }, 1500);
+            }
+            
+            // ============================================
+            // EFECTOS Y SONIDOS
+            // ============================================
+            
+            function playSuccessSound() {
+                // Crear contexto de audio
+                try {
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                    oscillator.frequency.exponentialRampToValueAtTime(1200, audioContext.currentTime + 0.1);
+                    
+                    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+                    
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.2);
+                } catch (e) {
+                    console.log('Audio no disponible');
+                }
+            }
+            
+            function playCopySound() {
+                try {
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.setValueAtTime(600, audioContext.currentTime);
+                    oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
+                    
+                    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
+                    
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.15);
+                } catch (e) {
+                    console.log('Audio no disponible');
+                }
+            }
+            
+            function showNotification(title, message, type = 'success') {
+                // Eliminar notificación anterior si existe
+                const oldNotification = document.querySelector('.notification');
+                if (oldNotification) {
+                    oldNotification.remove();
+                }
+                
+                // Crear nueva notificación
+                const notification = document.createElement('div');
+                notification.className = 'notification';
+                
+                // Color según tipo
+                if (type === 'error') {
+                    notification.style.background = 'rgba(255, 50, 50, 0.9)';
+                } else if (type === 'warning') {
+                    notification.style.background = 'rgba(255, 215, 0, 0.9)';
+                } else if (type === 'info') {
+                    notification.style.background = 'rgba(0, 168, 255, 0.9)';
+                }
+                
+                notification.innerHTML = `
+                    <div style="font-size: 1.1em; margin-bottom: 5px;">${title}</div>
+                    <div style="font-size: 0.9em; opacity: 0.9;">${message}</div>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Eliminar después de 3 segundos
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 3000);
+            }
+            
+            // ============================================
+            // INICIALIZAR GENERADOR
+            // ============================================
             
             // Inicializar localStorage si no existe
             if (!localStorage.getItem(KEYS_STORAGE)) {
                 localStorage.setItem(KEYS_STORAGE, JSON.stringify([]));
+                console.log('📂 LocalStorage inicializado');
             }
             
             // Generar una key automáticamente al cargar
@@ -1015,7 +1059,7 @@
             }, 500);
             
             console.log('🚀 BYPAS.HUB Key Generator v3.0 - Listo!');
-            console.log('🔗 API del hub: ?key=TU_KEY&hub=1');
+            console.log('🔗 API del hub: https://elproxd1234.github.io/Bypas.hubf/?key=TU_KEY&hub=1');
         };
     </script>
 </body>
